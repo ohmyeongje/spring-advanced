@@ -30,6 +30,13 @@ public class AuthService {
 
         UserRole userRole = UserRole.of(signupRequest.getUserRole());
 
+<<<<<<< HEAD
+=======
+        if (userRepository.existsByEmail(signupRequest.getEmail())) {
+            throw new InvalidRequestException("이미 존재하는 이메일입니다.");
+        }
+
+>>>>>>> 23088f7498a938ab5d8c860020ed03866d19b621
         User newUser = new User(
                 signupRequest.getEmail(),
                 encodedPassword,
@@ -37,10 +44,13 @@ public class AuthService {
         );
         User savedUser = userRepository.save(newUser);
 
+<<<<<<< HEAD
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
             throw new InvalidRequestException("이미 존재하는 이메일입니다.");
         }
 
+=======
+>>>>>>> 23088f7498a938ab5d8c860020ed03866d19b621
         String bearerToken = jwtUtil.createToken(savedUser.getId(), savedUser.getEmail(), userRole);
 
         return new SignupResponse(bearerToken);

@@ -29,14 +29,24 @@ public class WeatherClient {
         WeatherDto[] weatherArray = responseEntity.getBody();
         if (!HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             throw new ServerException("날씨 데이터를 가져오는데 실패했습니다. 상태 코드: " + responseEntity.getStatusCode());
+<<<<<<< HEAD
+=======
+        } else {
+            if (weatherArray == null || weatherArray.length == 0) {
+                throw new ServerException("날씨 데이터가 없습니다.");
+            }
+>>>>>>> 23088f7498a938ab5d8c860020ed03866d19b621
         }
 
         String today = getCurrentDate();
 
+<<<<<<< HEAD
         if (weatherArray == null || weatherArray.length == 0) {
             throw new ServerException("날씨 데이터가 없습니다.");
         }
 
+=======
+>>>>>>> 23088f7498a938ab5d8c860020ed03866d19b621
         for (WeatherDto weatherDto : weatherArray) {
             if (today.equals(weatherDto.getDate())) {
                 return weatherDto.getWeather();

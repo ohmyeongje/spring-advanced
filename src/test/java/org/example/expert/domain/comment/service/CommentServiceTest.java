@@ -40,6 +40,7 @@ class CommentServiceTest {
         CommentSaveRequest request = new CommentSaveRequest("contents");
         AuthUser authUser = new AuthUser(1L, "email", UserRole.USER);
 
+        // Todo가 없을 때 Optional.empty() 반환
         given(todoRepository.findById(anyLong())).willReturn(Optional.empty());
 
         // when
@@ -48,8 +49,9 @@ class CommentServiceTest {
         });
 
         // then
-        assertEquals("Todo not found", exception.getMessage());
+        assertEquals("Todo not found", exception.getMessage()); // 예외 메시지 확인
     }
+
 
     @Test
     public void comment를_정상적으로_등록한다() {
